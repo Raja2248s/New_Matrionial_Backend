@@ -22,7 +22,7 @@ public class User {
 	@OneToOne
 	
 	@PrimaryKeyJoinColumn
-	@JsonIgnore
+	
 	private Registration registration ;
     private String firstName;
     private String lastName;

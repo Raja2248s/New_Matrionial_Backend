@@ -18,7 +18,7 @@ import com.infosys.services.RegistrationService;
 import com.infosys.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegistrationController {
 	
    @Autowired
