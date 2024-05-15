@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -18,15 +19,32 @@ public class Personal {
 	@JoinColumn(name="rid")
 	private Registration registration ;
 	
-	private String photograph;
+	@Lob
+	private byte[] photograph;
 	
+	private String bloodGroup;
+	private Integer age;
 	public int getPersonalId() {
 		return personalId;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public Personal(int personalId, Registration registration, byte[] photograph, String bloodGroup, Integer age) {
+		super();
+		this.personalId = personalId;
+		this.registration = registration;
+		this.photograph = photograph;
+		this.bloodGroup = bloodGroup;
+		this.age = age;
 	}
 	public Personal() {
 		super();
 	}
-	public Personal(int personalId, Registration registration, String photograph, String bloodGroup) {
+	public Personal(int personalId, Registration registration, byte[] photograph, String bloodGroup) {
 		super();
 		this.personalId = personalId;
 		this.registration = registration;
@@ -46,11 +64,11 @@ public class Personal {
 		this.registration = registration;
 	}
 
-	public String getPhotograph() {
+	public byte[] getPhotograph() {
 		return photograph;
 	}
 
-	public void setPhotograph(String photograph) {
+	public void setPhotograph(byte[] photograph) {
 		this.photograph = photograph;
 	}
 
@@ -62,7 +80,7 @@ public class Personal {
 		this.bloodGroup = bloodGroup;
 	}
 
-	private String bloodGroup;
+	
 
 	
 }

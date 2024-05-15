@@ -21,6 +21,7 @@ public class PersonalService implements PersonalServiceInterface {
 		Personal existingRegistration = repository.findById(id).get();
         existingRegistration.setPhotograph(update.getPhotograph());
         existingRegistration.setBloodGroup(update.getBloodGroup());
+        existingRegistration.setAge(update.getAge());
         return repository.save(existingRegistration);
 	}
 }

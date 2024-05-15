@@ -1,5 +1,7 @@
 package com.infosys.controllers;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +20,15 @@ public class PersonalController {
 	PersonalService service;
 	
 	@PostMapping("/personal")
-	   public Personal addPersonalInfo(@RequestBody Personal registration) {
-		   return service.addPersonalInfo(registration);
+	   public Personal addPersonalInfo(@RequestBody Personal personal) {
+		   byte[] photographBytes = Base64.getDecoder().decode(personal.getPhotograph());
+		   personal.setPhotograph(photographBytes);
+		   return service.addPersonalInfo(personal);
 	   }
 	@PutMapping("/personal/{id}")
 	   public Personal updatePersonalInfo(@PathVariable("id") int id ,@RequestBody Personal update) {
+		byte[] photographBytes = Base64.getDecoder().decode(update.getPhotograph());
+          update.setPhotograph(photographBytes);
 		   return service.updatePersonalInfoById(id ,  update);
 	   }
 }

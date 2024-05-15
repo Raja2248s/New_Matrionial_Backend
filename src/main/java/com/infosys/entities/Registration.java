@@ -6,7 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+//import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -15,22 +15,37 @@ public class Registration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int rid;
-	@OneToOne(mappedBy = "registration" , fetch = FetchType.EAGER)
-	
-    private User user;
+//	@OneToOne(mappedBy = "registration" , fetch = FetchType.EAGER)
+//	
+//    private User user;
 	private String userName;
 	private String password;
-	
+	private String phoneno;
+	public String getPhoneno() {
+		return phoneno;
+	}
+	public Registration(int rid, String userName, String password, String phoneno, String email) {
+		super();
+		this.rid = rid;
+//		this.user = user;
+		this.userName = userName;
+		this.password = password;
+		this.phoneno = phoneno;
+		this.email = email;
+	}
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
+	}
 	@Column(unique = true)
 	private String email;
 	public Registration() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Registration(int rid, User user, String userName, String password, String email) {
+	public Registration(int rid, String userName, String password, String email) {
 		super();
 		this.rid = rid;
-		this.user = user;
+//		this.user = user;
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
@@ -41,12 +56,12 @@ public class Registration {
 	public void setRid(int rid) {
 		this.rid = rid;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 	public String getUserName() {
 		return userName;
 	}

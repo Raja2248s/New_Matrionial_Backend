@@ -18,7 +18,7 @@ import com.infosys.services.RegistrationService;
 import com.infosys.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class RegistrationController {
 	
    @Autowired
@@ -34,9 +34,9 @@ public class RegistrationController {
    
    @PostMapping("/reg")
    public Registration addRegistration(@RequestBody Registration user) {
-	  User user1  =   user.getUser();
-	  userservice.addUser(user1);
-	  user.setUser(user1);
+//	  User user1  =   user.getUser();
+//	  userservice.addUser(user1);
+//	  user.setUser(user1);
 	   return service.addRegistration(user);
    }
    
