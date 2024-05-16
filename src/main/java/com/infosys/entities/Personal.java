@@ -2,6 +2,7 @@ package com.infosys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,13 +21,14 @@ public class Personal {
 	private int personalId;
 	
 	@OneToOne
-	@JoinColumn(name="rid")
+//	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="rid" )
 //	@PrimaryKeyJoinColumn
 //	@JsonIgnore
 	private Registration registration ;
 	
-	@Lob
-	private byte[] photograph;
+//	@Lob
+	private String photograph;
 	
 	private String bloodGroup;
 	private Integer age;
@@ -39,7 +41,7 @@ public class Personal {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public Personal(int personalId, Registration registration, byte[] photograph, String bloodGroup, Integer age) {
+	public Personal(int personalId, Registration registration, String photograph, String bloodGroup, Integer age) {
 		super();
 		this.personalId = personalId;
 		this.registration = registration;
@@ -50,7 +52,7 @@ public class Personal {
 	public Personal() {
 		super();
 	}
-	public Personal(int personalId, Registration registration, byte[] photograph, String bloodGroup) {
+	public Personal(int personalId, Registration registration, String photograph, String bloodGroup) {
 		super();
 		this.personalId = personalId;
 		this.registration = registration;
@@ -70,11 +72,11 @@ public class Personal {
 		this.registration = registration;
 	}
 
-	public byte[] getPhotograph() {
+	public String getPhotograph() {
 		return photograph;
 	}
 
-	public void setPhotograph(byte[] photograph) {
+	public void setPhotograph(String photograph) {
 		this.photograph = photograph;
 	}
 

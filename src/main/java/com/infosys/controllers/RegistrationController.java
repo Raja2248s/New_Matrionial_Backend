@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.infosys.entities.Family;
 import com.infosys.entities.Registration;
-import com.infosys.entities.User;
+import com.infosys.entities.*;
+import com.infosys.services.FamilyService;
 import com.infosys.services.RegistrationService;
-import com.infosys.services.UserService;
+import com.infosys.services.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,6 +29,16 @@ public class RegistrationController {
    @Autowired
    UserService userservice;
    
+   @Autowired
+   FamilyService familyService;
+   
+   @Autowired
+   PersonalService personalService;
+   
+   @Autowired
+   EducationService educationService;
+   
+   
    @GetMapping("/reg")
    public List<Registration> getAllRegistration(){
 	   return service.getAllRegistration();
@@ -34,9 +46,25 @@ public class RegistrationController {
    
    @PostMapping("/reg")
    public Registration addRegistration(@RequestBody Registration user) {
-//	  User user1  =   user.getUser();
-//	  userservice.addUser(user1);
-//	  user.setUser(user1);
+	   System.out.println("Received registration data: " + user.toString());
+	   //User
+	   
+	  User user1  =   user.getUser();
+	  userservice.addUser(user1);
+	  user.setUser(user1);
+	  //Family
+	  Family family = user.getFamily();
+	  familyService.addFamilyInfo(family);
+	  user.setFamily(family);
+	  //Personal
+	  Personal personal = user.getPersonal();
+	  personalService.addPersonalInfo(personal);
+	  user.setPersonal(personal);
+	  //Education
+	  Education education = user.getEducation();
+	  educationService.addEducationCareer(education);
+	  user.setEducation(education);
+	  
 	   return service.addRegistration(user);
    }
    

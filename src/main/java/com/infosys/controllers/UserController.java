@@ -31,9 +31,11 @@ public class UserController {
     
     @PostMapping("/user")
     public User addUser(@RequestBody User user) {
-    	 Registration registration = user.getRegistration(); // Get registration from user
-         registrationService.addRegistration(registration);
+    	 Registration registration = user.getRegistration();
+    	 registration.setUser(user);// Get registration from user
+//         registrationService.addRegistration(registration);
          user.setRegistration(registration);
+         
     	return service.addUser(user);
     }
     

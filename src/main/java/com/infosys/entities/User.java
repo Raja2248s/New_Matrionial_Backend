@@ -20,8 +20,9 @@ public class User {
 	private int userId;
 	
 	@OneToOne
+	@JoinColumn(name="rid" )
+//	@PrimaryKeyJoinColumn
 	
-	@PrimaryKeyJoinColumn
 	
 	private Registration registration ;
     private String firstName;
