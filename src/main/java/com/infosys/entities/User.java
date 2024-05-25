@@ -4,6 +4,7 @@ package com.infosys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,15 +20,36 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	
-	@OneToOne
-	@JoinColumn(name="rid" )
+//	@OneToOne
+//	@JoinColumn(name="rid" )
 //	@PrimaryKeyJoinColumn
 	
+	@Column(unique = true)
+	private int rid ;
 	
-	private Registration registration ;
+	
     private String firstName;
     private String lastName;
-    private String address;
+    public User(int userId, int rid, String firstName, String lastName, String address, int noOfGuest, String gender,
+			String dateofFunction, String mobileNum) {
+		super();
+		this.userId = userId;
+		this.rid = rid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.noOfGuest = noOfGuest;
+		this.gender = gender;
+		this.dateofFunction = dateofFunction;
+		this.mobileNum = mobileNum;
+	}
+	public int getRid() {
+		return rid;
+	}
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+	private String address;
     
     private int noOfGuest;
     private String gender;
@@ -39,12 +61,12 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public Registration getRegistration() {
-		return registration;
-	}
-	public void setRegistration(Registration registration) {
-		this.registration = registration;
-	}
+//	public Registration getRegistration() {
+//		return registration;
+//	}
+//	public void setRegistration(Registration registration) {
+//		this.registration = registration;
+//	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -87,19 +109,19 @@ public class User {
 	public void setMobileNum(String mobileNum) {
 		this.mobileNum = mobileNum;
 	}
-	public User(int userId, Registration registration, String firstName, String lastName, String address, int noOfGuest,
-			String gender, String dateofFunction, String mobileNum) {
-		super();
-		this.userId = userId;
-		this.registration = registration;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.noOfGuest = noOfGuest;
-		this.gender = gender;
-		this.dateofFunction = dateofFunction;
-		this.mobileNum = mobileNum;
-	}
+//	public User(int userId, Registration registration, String firstName, String lastName, String address, int noOfGuest,
+//			String gender, String dateofFunction, String mobileNum) {
+//		super();
+//		this.userId = userId;
+//		this.registration = registration;
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.address = address;
+//		this.noOfGuest = noOfGuest;
+//		this.gender = gender;
+//		this.dateofFunction = dateofFunction;
+//		this.mobileNum = mobileNum;
+//	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub

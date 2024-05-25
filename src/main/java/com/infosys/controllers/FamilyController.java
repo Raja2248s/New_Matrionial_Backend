@@ -29,9 +29,7 @@ public class FamilyController {
 	 
 	 @PostMapping("/family")
 	 public Family addFamilyInfo(@RequestBody Family family) {
-		 Registration registration = family.getRegistration();
-		 registrationService.addRegistration(registration);
-		 family.setRegistration(registration);
+		 
 		 return service.addFamilyInfo(family);
 	 }
 	 

@@ -19,9 +19,7 @@ public class EducationService implements EducationServiceInterface {
 	@Override
 	public Education updateEducationCareerById(int id , Education update) {
 		Education existingEducationCareer = repository.findById(id).get();
-		existingEducationCareer.setEducationLevel(update.getEducationLevel());
-		existingEducationCareer.setEducationFiled(update.getEducationFiled());
-		existingEducationCareer.setRegistration(update.getRegistration());
+		
 		return repository.save(existingEducationCareer);
         
 	}

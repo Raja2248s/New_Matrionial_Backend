@@ -15,8 +15,8 @@ public class PersonalService implements PersonalServiceInterface {
 	
 	@Override
 	public Personal addPersonalInfo(Personal user) {
-		Registration reg = user.getRegistration();
-		user.setRegistration(reg);
+//		Registration reg = user.getRegistration();
+//		user.setRegistration(reg);
 		return repository.save(user);
 	}
 	

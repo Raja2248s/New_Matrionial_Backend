@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infosys.entities.Education;
+import com.infosys.entities.Family;
+import com.infosys.entities.Personal;
 import com.infosys.entities.Registration;
+import com.infosys.entities.User;
 import com.infosys.repositories.RegistrationRepositories;
 
 @Service
@@ -13,6 +17,9 @@ public class RegistrationService implements RegistrationServiceInterface {
 
 	@Autowired
 	RegistrationRepositories repository;
+	
+//	@Autowired
+//	UserService userService;
 	
 	
 	@Override
@@ -23,6 +30,21 @@ public class RegistrationService implements RegistrationServiceInterface {
 	
 	@Override
 	public Registration addRegistration(Registration user) {
+//		 User user1  =   user.getUser();
+//		  userervice.addUser(user1);
+//		  user.setUser(user1);
+//		  //Family
+//		  Family family = user.getFamily();
+//		  familyService.addFamilyInfo(family);
+//		  user.setFamily(family);
+//		  //Personal
+//		  Personal personal = user.getPersonal();
+//		  personalService.addPersonalInfo(personal);
+//		  user.setPersonal(personal);
+//		  //Education
+//		  Education education = user.getEducation();
+//		  educationService.addEducationCareer(education);
+//		  user.setEducation(education);
 		return repository.save(user);
 	}
 	

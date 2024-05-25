@@ -3,6 +3,7 @@ package com.infosys.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,12 +19,8 @@ public class Family {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int familyinfoId;
 	
-//	@OneToOne
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="rid")
-//	@PrimaryKeyJoinColumn
-	@JsonIgnore
-	private Registration registration ;
+	@Column(unique = true)
+	private int rid;
 	
 	private String familyStatus;
 	private String familyType;
@@ -31,26 +28,29 @@ public class Family {
 	public Family() {
 		super();
 	}
-	public Family(int familyinfoId, Registration registration, String familyStatus, String familyType,
-			String fatherName) {
+
+	public Family(int familyinfoId, int rid, String familyStatus, String familyType, String fatherName) {
 		super();
 		this.familyinfoId = familyinfoId;
-		this.registration = registration;
+		this.rid = rid;
 		this.familyStatus = familyStatus;
 		this.familyType = familyType;
 		this.fatherName = fatherName;
 	}
+
+	public int getRid() {
+		return rid;
+	}
+
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+
 	public int getFamilyinfoId() {
 		return familyinfoId;
 	}
 	public void setFamilyinfoId(int familyinfoId) {
 		this.familyinfoId = familyinfoId;
-	}
-	public Registration getRegistration() {
-		return registration;
-	}
-	public void setRegistration(Registration registration) {
-		this.registration = registration;
 	}
 	public String getFamilyStatus() {
 		return familyStatus;

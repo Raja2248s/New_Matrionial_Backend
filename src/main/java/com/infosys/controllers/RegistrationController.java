@@ -48,29 +48,31 @@ public class RegistrationController {
    public Registration addRegistration(@RequestBody Registration user) {
 	   System.out.println("Received registration data: " + user.toString());
 	   //User
-	   
-	  User user1  =   user.getUser();
-	  userservice.addUser(user1);
-	  user.setUser(user1);
-	  //Family
-	  Family family = user.getFamily();
-	  familyService.addFamilyInfo(family);
-	  user.setFamily(family);
-	  //Personal
-	  Personal personal = user.getPersonal();
-	  personalService.addPersonalInfo(personal);
-	  user.setPersonal(personal);
-	  //Education
-	  Education education = user.getEducation();
-	  educationService.addEducationCareer(education);
-	  user.setEducation(education);
+//	   Registration r = service.addRegistration(user);
+//	  User user1  =   user.getUser();
+//	  userservice.addUser(user1);
+//	  user.setUser(user1);
+//	  //Family
+//	  Family family = user.getFamily();
+//	  familyService.addFamilyInfo(family);
+//	  user.setFamily(family);
+//	  //Personal
+//	  Personal personal = user.getPersonal();
+//	  personalService.addPersonalInfo(personal);
+//	  user.setPersonal(personal);
+//	  //Education
+//	  Education education = user.getEducation();
+//	  educationService.addEducationCareer(education);
+//	  user.setEducation(education);
 	  
-	   return service.addRegistration(user);
+//	   return service.addRegistration(user);
+	   
+	  return service.addRegistration(user);
    }
    
-   @GetMapping("/reg/{email}")
+   @GetMapping("/reg/{email}" )
    public Registration getRegistrationInfoByEmail(@PathVariable("email") String email) {
-	   return service.getRegistrationInfoByEmail(email);
+	     return service.getRegistrationInfoByEmail(email);
    }
    
    @PutMapping("/reg/{id}")

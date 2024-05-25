@@ -1,6 +1,7 @@
 package com.infosys.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,8 @@ import com.infosys.services.EducationService;
 import com.infosys.services.RegistrationService;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class EducationController {
 	@Autowired
 	EducationService service;
@@ -23,9 +26,7 @@ public class EducationController {
 	
 	 @PostMapping("/edu")
 	 public Education addEducationCareer(@RequestBody Education education) {
-		 Registration registration = education.getRegistration();
-		 registrationService.addRegistration(registration);
-		 education.setRegistration(registration);
+		
 		 return service.addEducationCareer(education);
 	 }
 	 

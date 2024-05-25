@@ -33,9 +33,7 @@ public class PersonalController {
 	public Personal addPersonalInfo(@RequestBody Personal personal) {
 //		byte[] photographbytes = Base64.getDecoder().decode(personal.getPhotograph());
 //		personal.setPhotograph(photographbytes);
-		Registration registration = personal.getRegistration();
-		registrationService.addRegistration(registration);
-		personal.setRegistration(registration);
+		
 		return service.addPersonalInfo(personal);
 	}
 //	   public Personal addPersonalInfo(@RequestBody Personal personal) {

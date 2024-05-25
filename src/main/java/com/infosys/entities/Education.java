@@ -2,6 +2,7 @@ package com.infosys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,31 +18,35 @@ public class Education {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int educationId;
 	
-	@OneToOne
-	@JoinColumn(name="rid")
-//	@PrimaryKeyJoinColumn
-//	@JsonIgnore
-	
-	private Registration registration ;
+	@Column(unique = true)
+	private int rid;
 	
 	private String educationLevel;
 	private String educationFiled;
 	public int getEducationId() {
 		return educationId;
 	}
-	public Education() {
+	
+	public Education(int educationId, int rid, String educationLevel, String educationFiled) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.educationId = educationId;
+		this.rid = rid;
+		this.educationLevel = educationLevel;
+		this.educationFiled = educationFiled;
 	}
+
+	public int getRid() {
+		return rid;
+	}
+
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+
 	public void setEducationId(int educationId) {
 		this.educationId = educationId;
 	}
-	public Registration getRegistration() {
-		return registration;
-	}
-	public void setRegistration(Registration registration) {
-		this.registration = registration;
-	}
+	
 	public String getEducationLevel() {
 		return educationLevel;
 	}
@@ -54,13 +59,7 @@ public class Education {
 	public void setEducationFiled(String educationFiled) {
 		this.educationFiled = educationFiled;
 	}
-	public Education(int educationId, Registration registration, String educationLevel, String educationFiled) {
-		super();
-		this.educationId = educationId;
-		this.registration = registration;
-		this.educationLevel = educationLevel;
-		this.educationFiled = educationFiled;
-	}
+	
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.infosys.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     @Autowired
 	UserService service ;
@@ -31,11 +33,6 @@ public class UserController {
     
     @PostMapping("/user")
     public User addUser(@RequestBody User user) {
-    	 Registration registration = user.getRegistration();
-    	 registration.setUser(user);// Get registration from user
-//         registrationService.addRegistration(registration);
-         user.setRegistration(registration);
-         
     	return service.addUser(user);
     }
     
