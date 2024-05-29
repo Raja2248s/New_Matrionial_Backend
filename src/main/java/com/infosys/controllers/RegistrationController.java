@@ -27,7 +27,7 @@ public class RegistrationController {
    RegistrationService service;
    
    @Autowired
-   UserService userservice;
+   UserService userService;
    
    @Autowired
    FamilyService familyService;
@@ -82,6 +82,11 @@ public class RegistrationController {
    
    @DeleteMapping("/reg/{id}")
   public void deleteRegistration(@PathVariable("id") int id) {
+	  userService.deleteUserByRid(id);
+	  personalService.deleteUserByRid(id);
+	  familyService.deleteUserByRid(id);
+	  educationService.deleteUserByRid(id);
+	  
 	  service.deleteRegistration(id);
   }
    

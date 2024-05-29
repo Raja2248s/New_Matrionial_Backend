@@ -3,12 +3,18 @@ package com.infosys.controllers;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.infosys.entities.Personal;
 import com.infosys.entities.Registration;
@@ -29,12 +35,27 @@ public class PersonalController {
 	
 	
 	
-	@PostMapping("/personal")
-	public Personal addPersonalInfo(@RequestBody Personal personal) {
+	@PostMapping(value="/personal" , consumes= {"multipart/form-data"})
+//	public Personal addPersonalInfo(@RequestBody Personal personal) {
+////		byte[] photographbytes = Base64.getDecoder().decode(personal.getPhotograph());
+////		personal.setPhotograph(photographbytes);
+//		
+//		return service.addPersonalInfo(personal);
+//	}
+	public ResponseEntity<?> addPersonalInfo(@RequestParam("file") MultipartFile file , @RequestParam("bloodGroup") String bloodGroup ,  
+			@RequestParam("age") String age , @RequestParam("rid") String rid) {
 //		byte[] photographbytes = Base64.getDecoder().decode(personal.getPhotograph());
 //		personal.setPhotograph(photographbytes);
-		
-		return service.addPersonalInfo(personal);
+		try {
+			int ridInt = Integer.parseInt(rid);
+			int ageInt = Integer.parseInt(age);
+			Personal personalInfo = service.addPersonalInfo(file , bloodGroup , ridInt , ageInt);
+			return new ResponseEntity<>(personalInfo , HttpStatus.CREATED);
+		}
+		catch(Exception e) {
+			return new ResponseEntity<>("Failed to upload file: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+//		return service.addPersonalInfo(personal);
 	}
 //	   public Personal addPersonalInfo(@RequestBody Personal personal) {
 //		   byte[] photographBytes = Base64.getDecoder().decode(personal.getPhotograph());
@@ -82,4 +103,14 @@ public class PersonalController {
 //          update.setPhotograph(photographBytes);
 		   return service.updatePersonalInfoById(id ,  update);
 	   }
+	
+	@GetMapping("/personal/rid/{rid}")
+    public Personal getUserByRid(@PathVariable("rid") int rid) {
+        return service.getUserByRid(rid);
+    }
+	
+	@DeleteMapping("/personal/rd/{rid}")
+    public void deleteUserByRid(@PathVariable("rid") int rid) {
+    	service.deleteUserByRid(rid);
+    }
 }

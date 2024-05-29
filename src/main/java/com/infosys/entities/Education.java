@@ -21,6 +21,12 @@ public class Education {
 	@Column(unique = true)
 	private int rid;
 	
+	
+
+	public Education() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	private String educationLevel;
 	private String educationFiled;
 	public int getEducationId() {

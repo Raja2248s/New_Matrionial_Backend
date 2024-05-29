@@ -8,6 +8,6 @@ import com.infosys.entities.User;
 @Repository
 public interface UserRepositories extends JpaRepository<User , Integer> {
 
-	
+	User findByRid(int rid);
 	
 }

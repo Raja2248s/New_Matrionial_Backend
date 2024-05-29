@@ -4,6 +4,8 @@ import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,4 +53,14 @@ public class FamilyController {
 	public Family updateFamilyInfo(@PathVariable("id") int id ,@RequestBody Family update) {
 		  return service.updateFamilyInfoById(id,update);
 	 }
+	
+	@GetMapping("/family/rid/{rid}")
+    public Family getUserByRid(@PathVariable("rid") int rid) {
+        return service.getUserByRid(rid);
+    }
+	
+	 @DeleteMapping("/family/rd/{rid}")
+	    public void deleteUserByRid(@PathVariable("rid") int rid) {
+	    	service.deleteUserByRid(rid);
+	    }
 }

@@ -30,7 +30,13 @@ public class Personal {
 	@Column(unique = true)
 	private int rid;
 	
-public Personal(int personalId, int rid, String photograph, String bloodGroup, Integer age) {
+	@Lob
+	@Column(columnDefinition="LONGBLOB")
+	private byte[] photograph;
+	private String bloodGroup;
+	private Integer age;
+	
+public Personal(int personalId, int rid, byte[] photograph, String bloodGroup, Integer age) {
 	super();
 	this.personalId = personalId;
 	this.rid = rid;
@@ -45,11 +51,10 @@ public int getRid() {
 		this.rid = rid;
 	}
 
-	//	@Lob
-	private String photograph;
 	
-	private String bloodGroup;
-	private Integer age;
+	
+	
+	
 	public int getPersonalId() {
 		return personalId;
 	}
@@ -71,11 +76,11 @@ public int getRid() {
 
 
 
-	public String getPhotograph() {
+	public byte[] getPhotograph() {
 		return photograph;
 	}
 
-	public void setPhotograph(String photograph) {
+	public void setPhotograph(byte[] photograph) {
 		this.photograph = photograph;
 	}
 

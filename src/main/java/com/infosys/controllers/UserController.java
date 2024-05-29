@@ -2,6 +2,7 @@ package com.infosys.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,9 +37,16 @@ public class UserController {
     	return service.addUser(user);
     }
     
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable("id") int id) {
-    	return service.getUserById(id);
+    @GetMapping("/user/rid/{rid}")
+    public User getUserByRid(@PathVariable("rid") int rid) {
+        return service.getUserByRid(rid);
+    }
+    
+    
+    
+    @DeleteMapping("/user/rd/{rid}")
+    public void deleteUserByRid(@PathVariable("rid") int rid) {
+    	service.deleteUserByRid(rid);
     }
     
     

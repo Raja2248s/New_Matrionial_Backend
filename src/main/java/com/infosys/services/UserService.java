@@ -36,4 +36,18 @@ public class UserService implements UserServiceInterface {
 	public User getUserById(int id) {
 		return repository.findById(id).get();
 	}
+	
+	public User getUserByRid(int rid) {
+        return repository.findByRid(rid);
+    }
+	
+	public void deleteUserByRid(int rid) {
+		User user = repository.findByRid(rid);
+		if(user !=null) {
+			repository.delete(user);
+		}
+		else {
+			throw new RuntimeException("User with RID:"+rid+" not fount");
+		}
+	}
 }
