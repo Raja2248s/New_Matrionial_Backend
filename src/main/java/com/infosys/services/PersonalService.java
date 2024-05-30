@@ -1,6 +1,7 @@
 package com.infosys.services;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,13 +35,25 @@ public class PersonalService implements PersonalServiceInterface {
 	}
 	
 	@Override
-	public Personal updatePersonalInfoById(int id , Personal update) {
-		Personal existingRegistration = repository.findById(id).get();
-        existingRegistration.setPhotograph(update.getPhotograph());
-        existingRegistration.setBloodGroup(update.getBloodGroup());
-        existingRegistration.setAge(update.getAge());
-        return repository.save(existingRegistration);
+	public List<Personal> getAllPersonalUsers(){
+		
+		return repository.findAll();
 	}
+	
+	@Override
+	public Personal updatePersonalInfoById(MultipartFile file , String bloodGroup , int age , int id) throws IOException {
+		Personal e = repository.findById(id).get();
+        e.setBloodGroup(bloodGroup);
+        e.setAge(age);
+        e.setRid(e.getRid());
+        e.setPersonalId(e.getPersonalId());
+        if(file!=null && !file.isEmpty()) {
+        	e.setPhotograph(file.getBytes());
+        }
+        return repository.save(e);
+		
+	}
+	
 
 	@Override
 	public Personal savePersonalInfo(Personal personalInfo) {
@@ -52,6 +65,10 @@ public class PersonalService implements PersonalServiceInterface {
         return repository.findByRid(rid);
     }
 	
+	public Personal getUserByid(int id) {
+		return repository.findById(id).get();
+	}
+	
 	public void deleteUserByRid(int rid) {
 		Personal user = repository.findByRid(rid);
 		if(user !=null) {
@@ -61,4 +78,6 @@ public class PersonalService implements PersonalServiceInterface {
 			throw new RuntimeException("User with RID:"+rid+" not fount");
 		}
 	}
+
+	
 }

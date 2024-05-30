@@ -19,11 +19,19 @@ public class FamilyService implements FamilyServiceInterface {
 	}
 	@Override
 	public Family updateFamilyInfoById(int id , Family update) {
-		Family existingFamilyInfo = repository.findById(id).get();
+		Family e = repository.findById(id).get();
+		e.setFamilyinfoId(update.getFamilyinfoId());
+		e.setFamilyStatus(update.getFamilyStatus());
+		e.setFamilyType(update.getFamilyType());
+		e.setFatherName(update.getFatherName());
+		e.setRid(update.getRid());
 		
-        return repository.save(existingFamilyInfo);
+        return repository.save(e);
 	}
 	
+	public Family getUserByid(int id) {
+		return repository.findById(id).get();
+	}
 	public Family getUserByRid(int rid) {
         return repository.findByRid(rid);
     }

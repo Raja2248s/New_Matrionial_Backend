@@ -44,6 +44,11 @@ public class RegistrationController {
 	   return service.getAllRegistration();
    }
    
+//   @GetMapping("/reg/{id}")
+//   public Registration getAllRegistrationById(int id){
+//	   return service.getRegistrationInfoById(id);
+//   }
+   
    @PostMapping("/reg")
    public Registration addRegistration(@RequestBody Registration user) {
 	   System.out.println("Received registration data: " + user.toString());

@@ -51,8 +51,15 @@ public class FamilyController {
 //	 
 	@PutMapping("/family/{id}")
 	public Family updateFamilyInfo(@PathVariable("id") int id ,@RequestBody Family update) {
-		  return service.updateFamilyInfoById(id,update);
+		  return service.updateFamilyInfoById(id, update);
 	 }
+	
+	@GetMapping("/family/{id}")
+    public Family getUserByid(@PathVariable("id") int id) {
+        return service.getUserByid(id);
+    }
+	
+	
 	
 	@GetMapping("/family/rid/{rid}")
     public Family getUserByRid(@PathVariable("rid") int rid) {

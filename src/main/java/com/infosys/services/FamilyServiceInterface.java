@@ -8,4 +8,6 @@ public interface FamilyServiceInterface {
 	public Family updateFamilyInfoById(int id , Family update);
 	public void deleteUserByRid(int rid);
 	public Family getUserByRid(int rid);
+	public Family getUserByid(int id);
+	
 }

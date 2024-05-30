@@ -13,8 +13,10 @@ public class MessageController {
 	@Autowired
 	MessageService service;
 	
+	
+	
 	@PostMapping("/message")
-	public Message addmessage(@RequestBody Message registration) {
-		return service.addmessage(registration);
-	}
+    public Message addMessage(@RequestBody Message message) {
+        return service.addmessage(message);
+    }
 }

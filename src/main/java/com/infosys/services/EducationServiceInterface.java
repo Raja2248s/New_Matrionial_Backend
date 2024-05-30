@@ -9,4 +9,5 @@ public interface EducationServiceInterface {
 	public Education updateEducationCareerById(int id , Education update);
 	public void deleteUserByRid(int rid);
 	public Education getUserByRid(int rid);
+	public Education getUserByid(int id);
 }
