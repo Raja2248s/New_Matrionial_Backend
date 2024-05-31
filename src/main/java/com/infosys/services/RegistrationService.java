@@ -53,6 +53,8 @@ public class RegistrationService implements RegistrationServiceInterface {
 		return repository.findById(id).get();
 	}
   
+	
+	
 	@Override
 	public Registration getRegistrationInfoByEmail(String email) {
 		return repository.findByEmail(email);

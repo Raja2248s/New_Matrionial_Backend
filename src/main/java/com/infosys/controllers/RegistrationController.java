@@ -80,10 +80,17 @@ public class RegistrationController {
 	     return service.getRegistrationInfoByEmail(email);
    }
    
+   @GetMapping("/reg/id/{id}" )
+   public Registration getRegistrationInfoByid(@PathVariable("id") int email) {
+	     return service.getRegistrationInfoById(email);
+   }
+   
    @PutMapping("/reg/{id}")
    public Registration updateRegistration(@PathVariable("id") int id ,@RequestBody Registration update) {
 	   return service.updateRegistrationById(id ,  update);
    }
+   
+   
    
    @DeleteMapping("/reg/{id}")
   public void deleteRegistration(@PathVariable("id") int id) {

@@ -12,21 +12,24 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int messageId;
 	
-	private String formUsername;
+	private int form;
 	
-	private String toUsername;
+	private int torid;
 	
 	private String message;
 
+	private int rid ;
+	
 	public Message() {
 		super();
 	}
 	
-	public Message(int messageId, String formUsername, String toUsername, String message) {
+	public Message(int messageId, int rid ,  int form, int torid, String message) {
 		super();
 		this.messageId = messageId;
-		this.formUsername = formUsername;
-		this.toUsername = toUsername;
+		this.rid = rid;
+		this.form = form;
+		this.torid = torid;
 		this.message = message;
 	}
 
@@ -38,20 +41,20 @@ public class Message {
 		this.messageId = messageId;
 	}
 
-	public String getFormUsername() {
-		return formUsername;
+	public int getForm() {
+		return form;
 	}
 
-	public void setFormUsername(String formUsername) {
-		this.formUsername = formUsername;
+	public void setForm(int form) {
+		this.form = form;
 	}
 
-	public String getToUsername() {
-		return toUsername;
+	public int getTo() {
+		return torid;
 	}
 
-	public void setToUsername(String toUsername) {
-		this.toUsername = toUsername;
+	public void setTo(int to) {
+		this.torid = to;
 	}
 
 	public String getMessage() {
@@ -61,4 +64,15 @@ public class Message {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public int getRid() {
+		return rid;
+	}
+
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+
+	
+
 }

@@ -1,6 +1,7 @@
 package com.infosys.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import com.infosys.entities.Message;
 import com.infosys.services.MessageService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class MessageController {
 	@Autowired
 	MessageService service;
@@ -19,4 +21,7 @@ public class MessageController {
     public Message addMessage(@RequestBody Message message) {
         return service.addmessage(message);
     }
+	
+	
+	
 }

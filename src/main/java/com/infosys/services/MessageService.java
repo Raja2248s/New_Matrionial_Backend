@@ -13,5 +13,12 @@ public class MessageService implements MessageServiceInterface {
 	public Message addmessage(Message id) {
 		return repository.save(id);
 	}
+	
+	 public Message addMessage(Message message) {
+	        return repository.save(message);
+	    }
+	 
+	 
+	
 }
 
